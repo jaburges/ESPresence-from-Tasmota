@@ -1,0 +1,30 @@
+# Example for esp32-c3 (Shelly Plus 1PM Mini)
+esphome:
+  name: test
+  platformio_options:
+    board_build.flash_mode: dio
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+    platform_version: 6.4.0
+    version: 5.1.1
+  variant: esp32c3
+wifi:
+  manual_ip:
+    static_ip: 192.168.1.X
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+    dns1: 192.168.1.1
+  networks:
+  - ssid: "my_wifi"
+    password: "my_wifi_password"
+ota:
+  password: "my_ota_password"
+  unprotected_writes: True # This is mandatory if you want to flash the partition table or bootloader!
+logger:
+  hardware_uart: USB_SERIAL_JTAG
+web_server:
+button:
+- platform: restart
+  name: Restart
